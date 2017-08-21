@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hacked
+spec:
+  hostNetwork: true
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: hacked
+    spec:
+      containers:
+      - name: hacked
+        image: tutum/hello-world
+        securityContext:
+         capabilities:
+           add:
+           - SYS_ADMIN
+        ports:
+          - containerPort: 80
+
